@@ -1,6 +1,6 @@
 {
   "name": "bridit/console",
-  "description": "git remote add origin git@github.com:bridit/console.git",
+  "description": "Brid Modular Micro-Framework (Http)",
   "license": "MIT",
   "authors": [
     {
