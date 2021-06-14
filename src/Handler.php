@@ -13,14 +13,22 @@ class Handler extends \Brid\Core\Handlers\Handler
   ];
 
   /**
+   * @inheritDoc
+   */
+  protected function boot(string $basePath = null): static
+  {
+    define('APP_HANDLER_TYPE', 'cli');
+
+    return parent::boot($basePath);
+  }
+
+  /**
    * @param null $event
    * @param null $context
    * @throws Exception
    */
   public function handle($event = null, $context = null)
   {
-
-    define('APP_HANDLER_TYPE', 'cli');
 
     parent::handle($event, $context);
 
