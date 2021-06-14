@@ -2,11 +2,10 @@
 
 namespace Brid\Console;
 
-use Brid\Core\Foundation\Application;
 use Exception;
 use Symfony\Component\Console\Application as ConsoleApplication;
 
-class Handler extends Application
+class Handler extends \Brid\Core\Handlers\Handler
 {
 
   protected array $commands = [
@@ -14,10 +13,27 @@ class Handler extends Application
   ];
 
   /**
+   * @param null $event
+   * @param null $context
    * @throws Exception
    */
-  public function handle()
+  public function handle($event = null, $context = null)
   {
+
+    define('APP_HANDLER_TYPE', 'cli');
+
+    parent::handle($event, $context);
+
+    $this->run();
+
+  }
+
+  /**
+   * @throws Exception
+   */
+  protected function run()
+  {
+
     $console = new ConsoleApplication;
 
     $commands = array_merge($this->commands, require path('/routes/console.php'));
@@ -28,6 +44,7 @@ class Handler extends Application
     }
 
     $console->run();
+
   }
 
 }
