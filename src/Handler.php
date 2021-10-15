@@ -25,23 +25,22 @@ class Handler extends \Brid\Core\Handlers\Handler
   /**
    * @param null $event
    * @param null $context
+   * @return int
    * @throws Exception
    */
   public function handle($event = null, $context = null)
   {
-
     parent::handle($event, $context);
 
-    $this->run();
-
+    return $this->run();
   }
 
   /**
+   * @return int
    * @throws Exception
    */
-  protected function run()
+  protected function run(): int
   {
-
     $console = new ConsoleApplication;
 
     $commands = array_merge($this->commands, require path('/routes/console.php'));
@@ -51,8 +50,7 @@ class Handler extends \Brid\Core\Handlers\Handler
       $console->add(new $command);
     }
 
-    $console->run();
-
+    return $console->run();
   }
 
 }
